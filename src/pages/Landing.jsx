@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { motion } from "framer-motion"
 
 import logo from "../assets/moodbitlogo.png"
 import cat from "../assets/cat.png"
-
 import smart from "../assets/donate.gif"
 import ai from "../assets/digitalization.gif"
 import moodbitIcon from "../assets/magnifying-glass.gif"
@@ -11,97 +11,95 @@ import charts from "../assets/growth.gif"
 
 export default function Landing() {
   return (
-    <div className="w-full min-h-screen bg-white flex justify-center px-4">
-      <div className="max-w-5xl w-full py-10">
+    <div className="w-full min-h-screen bg-gradient-to-br from-purple-50 to-white">
+      
+      {/* NAVBAR */}
+      <header className="flex items-center justify-between px-10 py-6 shadow-sm bg-white/70 backdrop-blur-md sticky top-0 z-50">
+        <img src={logo} alt="MoodBit Logo" className="h-29" />
 
-        {/* Header */}
-        <header className="flex items-center justify-between mb-10">
-          <div className="flex items-center gap-2">
-            <img src={logo} alt="MoodBit Logo" className="h-12" />
-          </div>
+        <Button className="bg-blue-700 hover:bg-black cursor-pointer text-white px-8 py-5 text-lg rounded-xl shadow-md">
+          Get Started
+        </Button>
+      </header>
 
-          <Button className="bg-purple-700 hover:bg-purple-800 text-white px-6">
-            Get Started
+      {/* HERO SECTION */}
+      <section className="flex flex-col-reverse md:flex-row items-center justify-between px-10 mt-20 gap-14">
+
+        {/* LEFT CONTENT */}
+        <motion.div 
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7 }}
+          className="w-full md:w-1/2"
+        >
+          <h1 className="text-7xl font-extrabold leading-tight">
+            BUDGETING.<br />
+            BUT MAKE IT{" "}
+            <span className="text-blue-800 drop-shadow-2xl">FUN.</span>
+          </h1>
+
+          <p className="mt-6 text-gray-600 text-2xl leading-relaxed">
+            Make smarter financial decisions with predictions, insights, 
+            and your evolving <span className="text-blue-700 font-bold">MoodBit companion.</span>
+          </p>
+
+          <Button className="mt-10 bg-blue-700 hover:bg-black cursor-pointer text-white px-12 py-7 text-2xl rounded-xl shadow-lg transition">
+            Start Your Journey
           </Button>
-        </header>
+        </motion.div>
 
-        {/* Hero Section */}
-        <section className="flex flex-col-reverse md:flex-row items-center justify-between">
+        {/* CAT IMAGE */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="w-full md:w-1/2 flex justify-center md:justify-end"
+        >
+          <img 
+            src={cat} 
+            alt="MoodBit Cat" 
+            className="h-[28rem] drop-shadow-2xl hover:scale-105 transition-transform duration-300"
+          />
+        </motion.div>
+      </section>
 
-          {/* Left Text */}
-          <div className="max-w-xl">
-            <h1 className="text-5xl font-extrabold leading-tight">
-              BUDGETING.<br />
-              BUT MAKE IT{" "}
-              <span className="text-purple-600">FUN.</span>
-            </h1>
+      {/* FEATURES SECTION */}
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mt-28 px-10 pb-24"
+      >
+        {[
+          { icon: smart, title: "Smart Tracking", text: "Log expenses easily and see instant insights." },
+          { icon: ai, title: "AI Predictions", text: "Get accurate future spending trends." },
+          { icon: moodbitIcon, title: "Your MoodBit", text: "A cute companion that evolves with you." },
+          { icon: charts, title: "Visual Insights", text: "Understand your financial health instantly." },
+        ].map((feature, i) => (
+          <motion.div 
+            key={i}
+            whileHover={{ scale: 1.03 }}
+            transition={{ type: "spring", stiffness: 200 }}
+          >
+            <Card className="shadow-xl border-0 rounded-3xl bg-white/80 backdrop-blur-md hover:shadow-2xl h-48">
+              <CardHeader className="flex flex-row items-center gap-3 pb-0">
+                <img src={feature.icon} className="h-14 w-14" />
+                <CardTitle className="text-xl font-semibold">{feature.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="text-gray-600 text-lg mt-2">
+                {feature.text}
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </motion.section>
 
-            <p className="mt-4 text-gray-600 text-lg">
-              Track your expenses, predict your spending,<br />
-              and watch your <span className="text-purple-600 font-medium">MoodBit</span> evolve with your financial habits.
-            </p>
+      {/* FOOTER */}
+      <footer className="w-full py-10 text-center bg-white/60 backdrop-blur-md border-t">
+        <p className="text-gray-600 text-lg">© 2025 MoodBit Budget — All Rights Reserved</p>
+      </footer>
 
-            <Button className="mt-6 bg-purple-700 hover:bg-purple-800 text-white px-8 py-6 text-lg">
-              Get Started
-            </Button>
-          </div>
-
-          {/* Right Cat Image */}
-          <div>
-            <img src={cat} alt="MoodBit Cat" className="h-72" />
-          </div>
-
-        </section>
-
-        {/* Features Section */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-14">
-
-          {/* Smart Tracking */}
-          <Card className="shadow-md hover:shadow-lg transition">
-            <CardHeader>
-              <img src={smart} className="h-12 mb-2" />
-              <CardTitle>Smart Tracking</CardTitle>
-            </CardHeader>
-            <CardContent className="text-gray-600">
-              Log daily expenses easily and see instant insights.
-            </CardContent>
-          </Card>
-
-          {/* AI Predictions */}
-          <Card className="shadow-md hover:shadow-lg transition">
-            <CardHeader>
-              <img src={ai} className="h-12 mb-2" />
-              <CardTitle>AI Predictions</CardTitle>
-            </CardHeader>
-            <CardContent className="text-gray-600">
-              Get future forecasts and spending trends.
-            </CardContent>
-          </Card>
-
-          {/* MoodBit Buddy */}
-          <Card className="shadow-md hover:shadow-lg transition">
-            <CardHeader>
-              <img src={moodbitIcon} className="h-12 mb-2" />
-              <CardTitle>Your MoodBit</CardTitle>
-            </CardHeader>
-            <CardContent className="text-gray-600">
-              A cute digital buddy that reacts to your spending mood.
-            </CardContent>
-          </Card>
-
-          {/* Visual Insights */}
-          <Card className="shadow-md hover:shadow-lg transition">
-            <CardHeader>
-              <img src={charts} className="h-12 mb-2" />
-              <CardTitle>Visual Insights</CardTitle>
-            </CardHeader>
-            <CardContent className="text-gray-600">
-              See your financial health through interactive charts.
-            </CardContent>
-          </Card>
-
-        </section>
-      </div>
     </div>
   )
 }
