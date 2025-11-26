@@ -2,14 +2,18 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { motion } from "framer-motion"
 
+
 import logo from "../assets/moodbitlogo.png"
 import cat from "../assets/cat.png"
 import smart from "../assets/donate.gif"
 import ai from "../assets/digitalization.gif"
 import moodbitIcon from "../assets/magnifying-glass.gif"
 import charts from "../assets/growth.gif"
+import { Link } from "react-router-dom"
 
 export default function Landing() {
+
+
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-purple-50 to-white">
       
@@ -17,9 +21,11 @@ export default function Landing() {
       <header className="flex items-center justify-between px-10 py-6 shadow-sm bg-white/70 backdrop-blur-md sticky top-0 z-50">
         <img src={logo} alt="MoodBit Logo" className="h-29" />
 
+      <Link to='/login'>
         <Button className="bg-blue-700 hover:bg-black cursor-pointer text-white px-8 py-5 text-lg rounded-xl shadow-md">
           Get Started
         </Button>
+      </Link>
       </header>
 
       {/* HERO SECTION */}
@@ -43,9 +49,11 @@ export default function Landing() {
             and your evolving <span className="text-blue-700 font-bold">MoodBit companion.</span>
           </p>
 
+          <Link to='/login'>
           <Button className="mt-10 bg-blue-700 hover:bg-black cursor-pointer text-white px-12 py-7 text-2xl rounded-xl shadow-lg transition">
             Start Your Journey
           </Button>
+          </Link>
         </motion.div>
 
         {/* CAT IMAGE */}
